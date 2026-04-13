@@ -1,0 +1,19 @@
+{
+  "name": "markdown-monorepo",
+  "version": "1.0.0",
+  "description": "Monorepo for Markdown Notes Application",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "frontend:build": "npm run build -w frontend",
+    "frontend:dev": "npm run dev -w frontend",
+    "backend:start": "npm start -w backend",
+    "install:all": "npm install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
