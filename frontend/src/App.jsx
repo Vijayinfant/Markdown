@@ -8,10 +8,13 @@ function App() {
   const [activeNote, setActiveNote] = useState(null)
   const [isSidebarOpen, setIsSidebarOpen] = useState(true)
 
-  // Fetch notes on mount
-  useEffect(() => {
-    fetchNotes()
-  }, [])
+// Fetch notes on mount
+const BASE_URL = import.meta.env.DEV ? 'http://localhost:5000' : '/_/backend';
+axios.defaults.baseURL = BASE_URL;
+
+useEffect(() => {
+  fetchNotes()
+}, [])
 
   const fetchNotes = async () => {
     try {
