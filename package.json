@@ -8,6 +8,8 @@
     "backend"
   ],
   "scripts": {
+    "build": "npm run install:all && npm run frontend:build",
+    "start": "npm run backend:start",
     "frontend:build": "npm run build -w frontend",
     "frontend:dev": "npm run dev -w frontend",
     "backend:start": "npm start -w backend",
