@@ -1,11 +1,11 @@
 const { Pool } = require('pg');
-const sqlite3 = require('sqlite3').verbose();
+
 const path = require('path');
 
 let db;
-const isVercel = process.env.VERCEL || process.env.POSTGRES_URL;
+const isProd = process.env.VERCEL || process.env.RENDER || process.env.POSTGRES_URL || process.env.DATABASE_URL || process.env.NODE_ENV === 'production';
 
-if (isVercel) {
+if (isProd) {
     console.log('Using Postgres database on Vercel.');
     const pool = new Pool({
         connectionString: process.env.POSTGRES_URL || process.env.DATABASE_URL,
@@ -53,6 +53,7 @@ if (isVercel) {
 
 } else {
     console.log('Using SQLite database locally.');
+    const sqlite3 = require('@louislam/sqlite3').verbose();
     const dbPath = path.resolve(__dirname, 'notes.db');
     const sqliteDb = new sqlite3.Database(dbPath, (err) => {
         if (err) {
